@@ -1,0 +1,79 @@
+[build]
+  command = "npm ci --include=dev && npx convex deploy --cmd 'npm run build'"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback for client-side routing (must be last)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Edge functions for dynamic Convex HTTP proxying
+# RSS feeds
+[[edge_functions]]
+  path = "/rss.xml"
+  function = "rss"
+
+[[edge_functions]]
+  path = "/rss-full.xml"
+  function = "rss"
+
+# Sitemap
+[[edge_functions]]
+  path = "/sitemap.xml"
+  function = "sitemap"
+
+# API endpoints
+[[edge_functions]]
+  path = "/api/posts"
+  function = "api"
+
+[[edge_functions]]
+  path = "/api/post"
+  function = "api"
+
+[[edge_functions]]
+  path = "/api/export"
+  function = "api"
+
+# Geo location API for visitor map
+[[edge_functions]]
+  path = "/api/geo"
+  function = "geo"
+
+# Open Graph bot detection (excludes raw markdown directory)
+[[edge_functions]]
+  path = "/*"
+  function = "botMeta"
+  excludedPath = "/raw/*"
+
+# Security and SEO headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Link = "</llms.txt>; rel=\"author\""
+
+# Raw markdown files with proper content-type
+[[headers]]
+  for = "/raw/*.md"
+  [headers.values]
+    Content-Type = "text/markdown; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    X-Robots-Tag = "noindex"
+
+[context.production.environment]
+  NODE_ENV = "production"
+
+[context.deploy-preview.environment]
+  NODE_ENV = "development"
+
+[context.branch-deploy.environment]
+  NODE_ENV = "development"
+

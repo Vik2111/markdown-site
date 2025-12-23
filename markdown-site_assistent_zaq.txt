@@ -1,0 +1,361 @@
+https://github.com/Vik2111/markdown-site/tree/main
+-----------------
+Ниже минимальный путь «поднять своё» на основе этого репо.
+ 1. Форк и клон
+1. Нажми Fork в GitHub на waynesutton/markdown-site.[1]
+2. Клонируй форк к себе:  
+   git clone https://github.com/<your-username>/markdown-site.git
+   cd markdown-site
+ 2. Установка и локальный запуск
+1. Поставь зависимости:  
+   npm install
+2. Инициализируй Convex (создаст проект и .env.local):  
+   npx convex dev
+3. Запусти dev‑сервер:  
+   npm run dev
+4. Открой http://localhost:5173 в браузере.[1]
+ 3. Базовая настройка под себя
+ Автоматическая конфигурация (рекомендуется)
+1. Скопируй пример конфига:  
+   cp fork-config.json.example fork-config.json
+2. Открой fork-config.json и заполни название сайта, URL, описания и т.п.[1]
+3. Применить всё сразу:  
+   npm run configure
+   Это обновит указанные в README ~11 файлов с конфигурацией.[1]
+ Ручной вариант (если хочется контроля)
+- Открыть FORK_CONFIG.md и пройтись по списку файлов, редактируя их вручную (название сайта, мета‑теги, openapi, ai‑plugin, темы и т.д.).[1]
+ 4. Добавление контента
+1. Посты блога: создать Markdown‑файлы в content/blog/ c front‑matter:  
+yaml
+   title: "Your Post Title"
+   description: "A brief description"
+   date: "2025-01-15"
+   slug: "your-post-slug"
+   published: true
+   tags: ["tag1", "tag2"]
+   readTime: "5 min read"
+   image: "/images/my-header.png"
+   excerpt: "Short text for featured cards"
+   Your markdown content here...
+2. Статические страницы (about, contacts и т.п.) в content/pages/ с похожими метаданными.[1]
+ 5. Синхронизация контента
+- В dev:  
+  npm run sync
+- В prod (когда уже есть боевой Convex и .env.production.local c VITE_CONVEX_URL):  
+  npm run sync:prod
+ 6. Продакшн‑развёртывание на Netlify
+1. Задеплой Convex:  
+   npx convex deploy
+   Запомни URL вида https://your-deployment.convex.cloud.[1]
+2. Подключи репозиторий к Netlify, в настройках билда:  
+   - Build command:  
+     npm ci --include=dev && npx convex deploy --cmd 'npm run build'  
+   - Publish directory: dist.[1]
+3. В Netlify добавь переменные окружения:  
+   - CONVEX_DEPLOY_KEY — из Convex dashboard.  
+   - VITE_CONVEX_URL — прод‑URL Convex.[1]
+Если хочешь, дальше можно разобрать конкретно: настройка siteConfig.ts, llms.txt, ai-plugin.json под твой домен и агентов.
+----------
+как это сделать
+-----------
+2 шага выполнено
+Ниже минимальный путь «поднять своё» на основе этого репо.
+1. Форк и клон
+Нажми Fork в GitHub на waynesutton/markdown-site.
+​
+Клонируй форк к себе:
+git clone https://github.com/<your-username>/markdown-site.git
+cd markdown-site
+2. Установка и локальный запуск
+Поставь зависимости:
+npm install
+Инициализируй Convex (создаст проект и .env.local):
+npx convex dev
+Запусти dev‑сервер:
+npm run dev
+Открой http://localhost:5173 в браузере.
+​
+3. Базовая настройка под себя
+Автоматическая конфигурация (рекомендуется)
+Скопируй пример конфига:
+cp fork-config.json.example fork-config.json
+Открой fork-config.json и заполни название сайта, URL, описания и т.п.
+​
+Применить всё сразу:
+npm run configure
+Это обновит указанные в README ~11 файлов с конфигурацией.
+​
+Ручной вариант (если хочется контроля)
+Открыть FORK_CONFIG.md и пройтись по списку файлов, редактируя их вручную (название сайта, мета‑теги, openapi, ai‑plugin, темы и т.д.).
+​
+4. Добавление контента
+Посты блога: создать Markdown‑файлы в content/blog/ c front‑matter:
+text
+title: "Your Post Title"
+description: "A brief description"
+date: "2025-01-15"
+slug: "your-post-slug"
+published: true
+tags: ["tag1", "tag2"]
+readTime: "5 min read"
+image: "/images/my-header.png"
+excerpt: "Short text for featured cards"
+Your markdown content here...
+Статические страницы (about, contacts и т.п.) в content/pages/ с похожими метаданными.
+​
+5. Синхронизация контента
+В dev:
+npm run sync
+В prod (когда уже есть боевой Convex и .env.production.local c VITE_CONVEX_URL):
+npm run sync:prod
+6. Продакшн‑развёртывание на Netlify
+Задеплой Convex:
+npx convex deploy
+Запомни URL вида https://your-deployment.convex.cloud.
+​
+Подключи репозиторий к Netlify, в настройках билда:
+Build command:
+npm ci --include=dev && npx convex deploy --cmd 'npm run build'
+Publish directory: dist.
+​
+В Netlify добавь переменные окружения:
+CONVEX_DEPLOY_KEY — из Convex dashboard.
+VITE_CONVEX_URL — прод‑URL Convex.
+​
+Если хочешь, дальше можно разобрать конкретно: настройка siteConfig.ts, llms.txt, ai-plugin.json под твой домен и агентов.
+---------------
+что значит Нажми Fork в GitHub на waynesutton/markdown-site.​?
+--------------
+Фраза значит буквально: создай свою копию этого репозитория у себя в аккаунте GitHub.
+​
+Что такое Fork на GitHub
+Fork — это кнопка на странице репозитория, которая делает копию проекта в твоём аккаунте GitHub, с отдельной историей коммитов.
+​
+После форка у тебя появится свой репозиторий https://github.com/ТВОЙ_ЮЗЕРНЕЙМ/markdown-site, который можно менять, не трогая оригинал.
+​
+Как это выглядит пошагово
+Открой страницу репозитория waynesutton/markdown-site на GitHub (верх страницы, справа).
+​
+Нажми кнопку Fork (там ещё показывается число, сколько раз форкнули, сейчас около 56).
+​
+В диалоге выбери свой аккаунт, подтверди создание форка.
+После этого работай уже со своим форком (клонируй его, настраивай и т.д.).
+​
+Если хочешь, можно дальше разобрать: как именно клонировать свой форк и запустить проект локально.
+git clone https://github.com/<your-username>/markdown-site.git
+cd markdown-site
+-----------
+у меня https://github.com/Vik2111
+какая команда в терминал
+--------------
+1 шаг выполнен
+Нужно подставить свой логин GitHub вместо <your-username>, то есть Vik2111.
+​
+Команды для тебя
+git clone https://github.com/Vik2111/markdown-site.git
+cd markdown-site
+После этого можно делать npm install и дальше по инструкции проекта.
+​-------------
+C:\Users\anika>git clone https://github.com/Vik2111/markdown-site.git
+Cloning into 'markdown-site'...
+info: please complete authentication in your browser...
+remote: Repository not found.
+fatal: repository 'https://github.com/Vik2111/markdown-site.git/' not found
+C:\Users\anika>cd markdown-site
+Системе не удается найти указанный путь.
+---------------
+Ошибка говорит, что репозитория Vik2111/markdown-site ещё не существует, поэтому git clone его и не находит.
+​
+Почему так
+Команда git clone https://github.com/Vik2111/markdown-site.git будет работать только если у тебя в аккаунте уже есть форк markdown-site (или свой репозиторий с таким именем).
+​
+Судя по ошибке remote: Repository not found, форк ещё не создан или логин/имя репо указаны неправильно.
+​
+Что нужно сделать
+Зайди на страницу репозитория:
+https://github.com/waynesutton/markdown-site.
+​
+В правом верхнем углу нажми кнопку Fork и создай форк в свой аккаунт Vik2111 (можно оставить имя markdown-site).
+​
+​
+Убедись, что в браузере открывается страница:
+https://github.com/Vik2111/markdown-site — без 404.
+​
+Потом снова в терминале:
+cd C:\Users\anika
+git clone https://github.com/Vik2111/markdown-site.git
+cd markdown-site
+Если при открытии https://github.com/Vik2111/markdown-site в браузере будет «404 / Not Found» — пришли скрин, разберём, что именно не так с форком.
+----------------
+C:\Users\anika\markdown-site>npm install
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+✔ 20:39:43 Convex functions ready! (56.97s)
+
+уже 5 минут висит
+-----------
+npx convex dev как раз должен «висеть» и работать в фоне — это нормально, останавливать не надо.
+​
+Что сейчас происходит
+Команда подняла локальный Convex‑бэкенд на http://127.0.0.1:3210 и создала .env.local с VITE_CONVEX_URL и CONVEX_DEPLOYMENT.
+​
+Пока ты разрабатываешь, эта команда должна продолжать работать в этом окне терминала, поэтому кажется, что она «висит».
+​
+Что делать дальше (в другом окне)
+Открой новое окно/вкладку терминала, перейди в папку проекта и запусти фронтенд:
+cd C:\Users\anika\markdown-site
+npm run dev
+Потом в браузере открой:
+text
+http://localhost:5173
+Если хочешь, дальше можно настроить автоматический fork-config и первые свои посты.
+-----------
+открыл http://localhost:5173/
+markdown "sync" framework
+An open-source publishing framework for AI agents and developers. Write markdown, sync from the terminal.
+Fork it, customize it, ship it.
+Your content is instantly available to browsers, LLMs, and AI agents.
+No posts yet. Check back soon!
+---------
+1 шаг выполнен
+Это как раз твой локальный сайт — всё работает как надо, просто контента ещё нет.
+​
+Что это за экран
+Стартовая страница показывает описание фреймворка и фразу “No posts yet. Check back soon!”, потому что в content/blog/ пока нет ни одного поста.
+​
+Ссылка Fork it ведёт на оригинальный репозиторий автора, её можно игнорировать, ты уже работаешь со своим форком Vik2111/markdown-site.
+​
+Что сделать дальше
+Создай первый пост в папке проекта:
+C:\Users\anika\markdown-site\content\blog\
+файл, например: hello-world.md.
+​
+Вставь туда что‑то вроде:
+text
+title: "Мой первый пост"
+description: "Тестовый пост"
+date: "2025-12-22"
+slug: "my-first-post"
+published: true
+tags: ["test"]
+readTime: "1 min read"
+Привет! Это мой первый пост в markdown-site.
+В отдельном окне терминала (где уже есть npx convex dev) выполни:
+cd C:\Users\anika\markdown-site
+npm run sync
+Обнови страницу http://localhost:5173/ в браузере — пост должен появиться на главной и/или на /blog.
+​
+Если хочешь, можно сразу сделать ещё и статическую страницу about в content/pages/, подскажу шаблон.
+------------
+как это сделать
+---------------
+Чтобы «Добавить переменные среды в панель управления Netlify», нужно сделать это в настройках сайта на самом Netlify, а не в коде репозитория.
+​
+Куда нажимать в Netlify
+Зайдите в Netlify и откройте свой сайт (тот, к которому подключен этот форк markdown-site).
+​
+В меню сайта выберите Site settings.
+​
+Перейдите в раздел Build & deploy → Environment → Environment variables (иногда просто Environment variables).
+​
+Что именно добавить
+Согласно инструкции репозитория, нужно создать две переменные:
+​
+CONVEX_DEPLOY_KEY – скопировать из Convex Dashboard:
+Convex Dashboard → ваш проект → Project Settings → Deployment key.
+​
+VITE_CONVEX_URL – рабочий URL Convex, который вы получили после npx convex deploy, например:
+https://your-deployment.convex.cloud.
+​
+В Netlify:
+Нажать Add variable / Edit variables.
+​
+Ввести Name = CONVEX_DEPLOY_KEY, Value = ваш ключ, сохранить.
+​
+Добавить вторую переменную: Name = VITE_CONVEX_URL, Value = ваш Convex URL, сохранить.
+​
+После добавления
+Сохраните изменения и заново запустите деплой (Redeploy) сайта на Netlify, чтобы билд подхватил новые переменные.
+​
+Если скажете, на каком этапе вы сейчас (Convex уже задеплоен / URL есть или нет), можно расписать точные шаги под ваш аккаунт.
+--------
+я на Convex
+https://dashboard.convex.dev/t/zaqqaz-zaqqaz/settings
+, страница General
+---------
+Сейчас вам с Convex нужно две вещи: URL прод‑деплоя и ключ развертывания, которые потом пойдут в Netlify как переменные VITE_CONVEX_URL и CONVEX_DEPLOY_KEY.
+​
+Где взять VITE_CONVEX_URL в Convex
+На вкладке General в Convex обычно показывается URL вашего деплоя вида https://something.convex.cloud.
+​
+Сделайте так:
+Найдите блок вроде Deployment URL / Production URL / Project URL и скопируйте полный https://...convex.cloud.
+​
+Этот URL потом нужно будет вставить в Netlify как значение переменной VITE_CONVEX_URL.
+​
+Если General не показывает URL, нажмите сверху среду prod/production (если есть переключатель) и уже там ищите deployment URL.
+Где взять CONVEX_DEPLOY_KEY
+По инструкции нужно: Convex Dashboard → Project Settings → Deployment key.
+​
+У вас:
+В Convex перейдите не в General, а во вкладку Project settings / Settings → Deployment key (обычно это отдельный раздел слева).
+​
+Скопируйте длинную строку ключа развертывания – это и есть CONVEX_DEPLOY_KEY.
+​
+Дальше скажите, когда дойдёте до Netlify (откроете нужный сайт в Netlify) — напишу точные шаги «куда кликать» там и как именно вставить эти два значения.
+есть URL и ключ
+Проверено 20 источников
+Отлично, дальше всё делается уже в Netlify: надо просто вставить эти два значения в переменные окружения сайта.
+​
+Шаг 1: открыть нужный сайт в Netlify
+Зайдите на app.netlify.com и авторизуйтесь.
+​
+В списке проектов нажмите на тот сайт, где развёрнут ваш markdown-site (репозиторий с GitHub).
+​
+Шаг 2: перейти к переменным окружения
+Внутри сайта откройте Site settings.
+​
+Далее: Build & deploy → Environment → Environment variables (или просто Environment variables — в новом UI может быть пункт Site configuration → Environment variables).
+​
+Шаг 3: добавить CONVEX_DEPLOY_KEY и VITE_CONVEX_URL
+Нажмите Add variable (или New variable).
+​
+В поле Name введите CONVEX_DEPLOY_KEY.
+​
+В поле Value вставьте скопированный из Convex ключ деплоя и сохраните.
+​
+Ещё раз Add variable.
+​
+Name: VITE_CONVEX_URL.
+​
+Value: ваш Convex URL вида https://...convex.cloud, сохранить.
+-
+​https://ardent-tapir-719.convex.cloud
+prod:ardent-tapir-719|eyJ2MiI6ImYxMGRiN2JiZmE5YjQ5MGU5NGYwOWQ1YzViMWJjMjEzIn0=
+Шаг 4: пересобрать сайт
+Вернитесь на дашборд сайта (Overview).
+​
+Нажмите Deploys → Trigger deploy → Clear cache and deploy site или просто Trigger deploy.
+​
+Дождитесь, пока билд завершится без ошибок: переменные будут доступны в процессе сборки и рантайме.
+​
+Если напишете, что видите сейчас в Netlify (какой пункт меню / скрин описательно), можно подсказать точные названия кнопок в вашем интерфейсе.
+--------
+все отлично
+https://anvikv.netlify.app/
+я опубликовал
+-----------
+Круто, поздравляю — сайт живой и открывается по адресу anvikv.netlify.app, значит связка Convex + Netlify настроена правильно.
+​
+Что можно сделать дальше
+Создать свой первый пост: в репозитории в папке content/blog добавьте новый .md‑файл по аналогии с существующими, закоммитьте и запушьте — Netlify автоматически пересоберёт сайт.
+​
+Переименовать/удалить демо‑посты: те markdown‑файлы в content/blog можно менять или удалить, чтобы оставить только свой контент.
+​
+Настроить метаданные: в каждом посте можно править frontmatter (title, description, author), чтобы корректно отображались заголовки и превью.
+​
+Если хочешь, можно вместе сделать: ты напишешь тему первой записи, а дальше подскажу точный шаблон .md и куда его положить.
